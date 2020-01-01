@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Usol.Wally.Domain</AssemblyName>
+    <RootNamespace>Usol.Wally.Domain</RootNamespace>
+  </PropertyGroup>
+
+</Project>
