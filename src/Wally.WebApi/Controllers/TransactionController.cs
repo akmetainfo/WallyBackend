@@ -42,7 +42,7 @@ namespace Usol.Wally.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<object> Delete([FromBody] Transactions.Delete.Command command, CancellationToken cancellationToken)
+        public async Task<object> Delete(Transactions.Delete.Command command, CancellationToken cancellationToken)
         {
             var result = await this.Mediator.Send(command, cancellationToken);
             return result;
