@@ -19,6 +19,11 @@ namespace Usol.Wally.Application.Transactions.List
             this.ToDate = toDate;
         }
 
+        public static Query WithoutPaging(int? accountId, bool hideChecked, bool hideInternalTransfers, decimal? amountFrom, decimal? amountTo, int? categoryId, DateTime? fromDate, DateTime? toDate)
+        {
+            return new Query(accountId, hideChecked, hideInternalTransfers, amountFrom, amountTo, categoryId, fromDate, toDate, false, null, null);
+        }
+
         public int? AccountId { get; }
 
         public bool HideChecked { get; }

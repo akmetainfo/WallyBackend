@@ -21,8 +21,8 @@ namespace Usol.Wally.Application.Transactions.List
             var query = this.ApplicationDbContext.Transactions
                             .Include(x => x.TransactionCategories)
                             .ThenInclude(x => x.Category)
-                            .Include(x => x.Source)
-                            .Include(x => x.Destination)
+                            .Include(x => x.Source.Currency)
+                            .Include(x => x.Destination.Currency)
                             .Where(x => true);
 
             query = ApplyFilters(query, request);
