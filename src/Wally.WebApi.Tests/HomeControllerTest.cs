@@ -10,7 +10,8 @@ namespace Usol.Wally.WebApi.Tests
         [Test]
         public async Task ControllerHasNoIndexPage()
         {
-            var response = await _client.GetAsync("/");
+            var client = NotAuthorizedClient();
+            var response = await client.GetAsync("/");
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }

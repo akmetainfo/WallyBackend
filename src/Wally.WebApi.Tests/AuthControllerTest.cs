@@ -1,8 +1,5 @@
 ﻿using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using Usol.Wally.WebApi.Controllers;
 
@@ -14,19 +11,16 @@ namespace Usol.Wally.WebApi.Tests
         [Test]
         public async Task InvalidUser_ReturnBadRequest()
         {
-            var request = ComposeRequest("invalid-user-login", "password-here");
+            var request = new AuthController.TokenRequest
+            {
+                UserName = "invalid-user-login",
+                Password = "password-here",
+            };
 
-            var response = await _client.PostAsync("/api/token", request);
+            var client = NotAuthorizedClient();
+            var response = await client.PostAsync("/api/token", ToContent(request));
 
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-        }
-
-        private static StringContent ComposeRequest(string username, string password)
-        {
-            var data = new AuthController.TokenRequest { UserName = username, Password = password };
-            var jsonString = JsonConvert.SerializeObject(data);
-            var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            return content;
         }
     }
 }
