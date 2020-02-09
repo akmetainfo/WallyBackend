@@ -1,11 +1,9 @@
 ﻿using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
 namespace Usol.Wally.WebApi.Controllers
@@ -33,21 +31,9 @@ namespace Usol.Wally.WebApi.Controllers
                 return;
             }
 
-            var now = DateTime.UtcNow;
-
-            var jwt = new JwtSecurityToken(
-                AuthOptions.ISSUER,
-                AuthOptions.AUDIENCE,
-                principal.Claims,
-                now,
-                now.Add(TimeSpan.FromHours(AuthOptions.LIFETIME)),
-                new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
             var response = new
             {
-                token = encodedJwt,
+                token = new TokenGenerator().Generate(DateTime.UtcNow, principal.Claims),
                 username = principal.Identity.Name,
             };
 
