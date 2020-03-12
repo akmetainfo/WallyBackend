@@ -7,13 +7,13 @@ namespace Usol.Wally.Application
 {
     public class BaseHandler
     {
+        protected readonly ApplicationDbContext ApplicationDbContext;
+
+        protected IDbConnection Db => this.ApplicationDbContext.Database.GetDbConnection();
+
         protected BaseHandler(ApplicationDbContext applicationDbContext)
         {
             this.ApplicationDbContext = applicationDbContext ?? throw new ArgumentNullException(nameof(applicationDbContext));
         }
-
-        protected ApplicationDbContext ApplicationDbContext { get; }
-
-        protected IDbConnection Db => this.ApplicationDbContext.Database.GetDbConnection();
     }
 }

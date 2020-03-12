@@ -1,15 +1,17 @@
 ﻿using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Usol.Wally.Application.Tests.Accounts.Get
+namespace Usol.Wally.Application.Accounts.Get
 {
-    [TestFixture]
-    public class Test : AccountsTestBase
+    /// <summary>
+    /// Tests for <see cref="Handler"/>
+    /// </summary>
+    public class HandlerTest : AccountsTestBase
     {
         [Test]
         public async Task EmptyDatabase()
         {
-            var account = await GetById(0);
+            var account = await this.GetById(0);
 
             Assert.IsNull(account);
         }
@@ -19,9 +21,9 @@ namespace Usol.Wally.Application.Tests.Accounts.Get
         {
             var request = GetAccountData();
 
-            await Create(request);
+            await this.Create(request);
 
-            var account = await GetById(0);
+            var account = await this.GetById(0);
 
             Assert.IsNull(account);
         }
@@ -31,9 +33,9 @@ namespace Usol.Wally.Application.Tests.Accounts.Get
         {
             var request = GetAccountData();
 
-            await Create(request);
+            await this.Create(request);
 
-            var account = await GetById(1);
+            var account = await this.GetById(1);
 
             Assert.IsNotNull(account);
             Assert.AreEqual(request.Title, account.Title);
@@ -43,9 +45,9 @@ namespace Usol.Wally.Application.Tests.Accounts.Get
             Assert.AreEqual(request.IsCorrespondent, account.IsCorrespondent);
         }
 
-        private static Application.Accounts.Create.AccountData GetAccountData()
+        private static Create.AccountData GetAccountData()
         {
-            return new Application.Accounts.Create.AccountData(0, "tt", "asdf", false, true, 643);
+            return new Create.AccountData(0, "tt", "asdf", false, true, 643);
         }
     }
 }

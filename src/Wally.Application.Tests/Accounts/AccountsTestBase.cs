@@ -3,25 +3,25 @@ using Microsoft.EntityFrameworkCore;
 using Usol.Wally.Domain.Models;
 using Usol.Wally.Persistence;
 
-namespace Usol.Wally.Application.Tests.Accounts
+namespace Usol.Wally.Application.Accounts
 {
     public class AccountsTestBase : TestBase
     {
-        protected async Task<Application.Accounts.Create.AccountData> Create(Application.Accounts.Create.AccountData request)
+        protected async Task<Create.AccountData> Create(Create.AccountData request)
         {
             using (var context = new ApplicationDbContext(this.GetDbOptions()))
             {
-                var command = new Application.Accounts.Create.Command(request);
-                var handler = new Application.Accounts.Create.Handler(context);
+                var command = new Create.Command(request);
+                var handler = new Create.Handler(context);
                 return await handler.Handle(command, this.GetCancellationToken());
             }
         }
 
         protected async Task<Account> GetById(int id)
         {
-            using (var context = new ApplicationDbContext(GetDbOptions()))
+            using (var context = new ApplicationDbContext(this.GetDbOptions()))
             {
-                var account = await context.Accounts.SingleOrDefaultAsync(x => x.Id == id, GetCancellationToken());
+                var account = await context.Accounts.SingleOrDefaultAsync(x => x.Id == id, this.GetCancellationToken());
                 return account;
             }
         }

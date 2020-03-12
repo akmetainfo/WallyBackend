@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>Usol.Wally.Application.Tests</AssemblyName>
-    <RootNamespace>Usol.Wally.Application.Tests</RootNamespace>
+    <RootNamespace>Usol.Wally.Application</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

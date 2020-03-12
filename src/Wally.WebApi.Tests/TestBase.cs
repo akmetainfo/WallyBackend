@@ -7,7 +7,7 @@ using System.Text;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace Usol.Wally.WebApi.Tests
+namespace Usol.Wally.WebApi
 {
     public class TestBase
     {

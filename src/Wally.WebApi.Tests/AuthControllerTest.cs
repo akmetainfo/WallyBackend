@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Usol.Wally.WebApi.Controllers;
 
-namespace Usol.Wally.WebApi.Tests
+namespace Usol.Wally.WebApi
 {
     [TestFixture]
     public class AuthControllerTest : TestBase

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Dapper;
 using Usol.Wally.Persistence;
-using Usol.Wally.Domain.Models;
 using MediatR;
 
 namespace Usol.Wally.Application.Transactions.GetTransaction

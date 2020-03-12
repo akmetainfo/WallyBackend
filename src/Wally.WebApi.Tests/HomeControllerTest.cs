@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Usol.Wally.WebApi.Tests
+namespace Usol.Wally.WebApi
 {
     [TestFixture]
     public class HomeControllerTest : TestBase

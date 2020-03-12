@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Usol.Wally.Application.Tests.Accounts.Create
+namespace Usol.Wally.Application.Accounts.Create
 {
-    [TestFixture]
-    public class Test : AccountsTestBase
+    /// <summary>
+    /// Tests for <see cref="Handler"/>
+    /// </summary>
+    public class HandlerTest : AccountsTestBase
     {
         [Test]
         public async Task Handle_ReturnSavedToDbData()
@@ -21,9 +23,9 @@ namespace Usol.Wally.Application.Tests.Accounts.Create
             Assert.AreEqual(result.IsCorrespondent, request.IsCorrespondent);
         }
 
-        private static Application.Accounts.Create.AccountData GetAccountData()
+        private static AccountData GetAccountData()
         {
-            return new Application.Accounts.Create.AccountData(0, "tt", "asdf", false, true, 643);
+            return new AccountData(0, "tt", "asdf", false, true, 643);
         }
     }
 }

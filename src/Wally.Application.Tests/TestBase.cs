@@ -2,7 +2,7 @@
 using Usol.Wally.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Usol.Wally.Application.Tests
+namespace Usol.Wally.Application
 {
     public class TestBase
     {

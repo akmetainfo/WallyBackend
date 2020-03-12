@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>Usol.Wally.WebApi.Tests</AssemblyName>
-    <RootNamespace>Usol.Wally.WebApi.Tests</RootNamespace>
+    <RootNamespace>Usol.Wally.WebApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
