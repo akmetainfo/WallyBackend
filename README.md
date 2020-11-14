@@ -4,7 +4,7 @@
 
 # How it works
 
-This application is using ASP.NET Core 2.2 with:
+This application is using ASP.NET Core 3.1 with:
 
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/),
 - CQRS and [MediatR](https://github.com/jbogard/MediatR),

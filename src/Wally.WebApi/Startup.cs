@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +24,7 @@ namespace Usol.Wally.WebApi
         {
             services.AddCors();
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthentication()
@@ -35,13 +34,13 @@ namespace Usol.Wally.WebApi
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
                             ValidateIssuer = true,
-                            ValidIssuer = AuthOptions.ISSUER,
+                            ValidIssuer    = AuthOptions.ISSUER,
 
                             ValidateAudience = true,
-                            ValidAudience = AuthOptions.AUDIENCE,
+                            ValidAudience    = AuthOptions.AUDIENCE,
                             ValidateLifetime = true,
 
-                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                            IssuerSigningKey         = AuthOptions.GetSymmetricSecurityKey(),
                             ValidateIssuerSigningKey = true,
                         };
                     });
@@ -51,7 +50,7 @@ namespace Usol.Wally.WebApi
 
             services.AddMediatR(typeof(Application.Currencies.List.Query).GetTypeInfo().Assembly);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -69,8 +68,11 @@ namespace Usol.Wally.WebApi
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
-
 }
